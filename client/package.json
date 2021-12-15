@@ -23,7 +23,7 @@
         "apexcharts": "^3.26.1",
         "clsx": "^1.1.1",
         "date-fns": "^2.27.0",
-        "formik": "^2.2.6",
+        "formik": "^2.2.9",
         "framer-motion": "^4.1.13",
         "history": "^5.0.0",
         "material-ui-popup-state": "^1.8.0",
@@ -39,6 +39,7 @@
         "react-router-dom": "6.0.0-beta.0",
         "react-scripts": "^4.0.3",
         "redux": "^4.0.5",
+        "yum": "^0.1.1",
         "yup": "^0.32.9"
     },
     "scripts": {
