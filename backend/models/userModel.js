@@ -1,14 +1,14 @@
 const mongoose = require("mongoose");
-require("mongoose-type-email");
+const validator = require("validator");
 const Schema = mongoose.Schema;
-mongoose.SchemaTypes.Email.defaults.message = "Email address is invalid";
 
 const userSchema = new Schema({
   emailId: {
-    type: mongoose.SchemaTypes.Email,
+    type: String,
     required: [true, "Please provide your email"],
     trim: true,
     unique: true,
+    validate: [validator.isEmail, "Please provide a valid email"],
   },
   userName: {
     type: String,
@@ -28,6 +28,7 @@ const userSchema = new Schema({
     type: String,
     required: false,
   },
+  bookings: [{ type: Schema.Types.ObjectId, ref: "booking" }],
 });
 
 module.exports = mongoose.model("User", userSchema);
