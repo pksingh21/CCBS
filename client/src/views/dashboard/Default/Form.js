@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { useNavigate } from 'react-router';
 import Stack from '@mui/material/Stack';
 import { Grid } from '@mui/material';
 import TextField from '@mui/material/TextField';
@@ -16,7 +15,8 @@ import ListItem from '@mui/material/ListItem';
 import DeviceIdentifier from './DeviceIdentifier';
 import { Card, CardContent, Divider } from '@mui/material';
 import { Typography } from '@mui/material';
-import axios from 'axios';
+import { useNavigate } from 'react-router';
+import axiosInstance from '../../../services/axiosInstance';
 export default function MaterialUIPickers() {
     var localDate = new Date();
     const navigate = useNavigate();
@@ -169,26 +169,12 @@ export default function MaterialUIPickers() {
             !DisplayNotificationTime &&
             !EndTimeTouch &&
             DisplayNotificationReason;
-        console.log(
-            DisplayNotificationDate,
-            StartDateTouch,
-            DisplayNotificationDate,
-            EndTimeTouch,
-            DisplayNotificationTime,
-            StartTimeTouch,
-            DisplayNotificationTime,
-            EndTimeTouch,
-            DisplayNotificationReason,
-            isFormValidated,
-            'Form Checker'
-        );
+
         if (!ReasonForRegistration) return;
 
         try {
-            const data = await axios.post('http://localhost:8000/api/v1/bookings/createBooking', body);
-            console.log(data);
+            const data = await axiosInstance.post('http://localhost:8000/api/v1/bookings/createBooking', body);
             navigate('/free/pages/profile-page', { replace: true });
-
             //Add in the userBooking also
         } catch (err) {
             //Navigate on error page
@@ -232,7 +218,6 @@ export default function MaterialUIPickers() {
                                                 <AlertTitle>Error</AlertTitle>
                                                 Start Date is more than End Date
                                             </Alert>
-                                            {/* {console.log(DisplayNotificationDate, StartDateTouch)}{' '} */}
                                         </>
                                     ) : (
                                         <></>

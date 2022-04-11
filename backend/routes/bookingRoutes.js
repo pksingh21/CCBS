@@ -1,23 +1,38 @@
 const express = require("express");
 const router = express.Router();
 
-const bookingController = require('../controllers/bookingController.js');
+const bookingController = require("../controllers/bookingController.js");
 const { isAuthenticated } = require("../controllers/authController");
 const getBookingSchema = require("../schemas/getBookingSchema");
 
 router.get(
   "/",
   isAuthenticated,
-  getBookingSchema,
   bookingController.getAllBookings
 );
 
-router.get('/:bookingId', bookingController.getOneBooking)
+router.get(
+  "/:bookingId",
+  isAuthenticated,
+  bookingController.getOneBooking
+);
 
-router.post('/createBooking', bookingController.createBooking)
+router.post(
+  "/createBooking",
+  isAuthenticated,
+  bookingController.createBooking
+);
 
-router.delete('/:bookingId', bookingController.deleteBooking)
+router.delete(
+  "/:bookingId",
+  isAuthenticated,
+  bookingController.deleteBooking
+);
 
-router.patch('/:bookingId',bookingController.updateBooking)
+router.patch(
+  "/:bookingId",
+  isAuthenticated,
+  bookingController.updateBooking
+);
 
 module.exports = router;
